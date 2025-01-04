@@ -14,41 +14,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
-public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
+public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     Context context;
-    ArrayList <Item> items;
+    ArrayList<Item> items;
+    private OnItemClickListener listener;  // Define the listener
 
-
-
-    public CoffeeAdapter(Context context, ArrayList<Item> items) {
+    // Constructor now accepts the listener
+    public CoffeeAdapter(Context context, ArrayList<Item> items, OnItemClickListener listener) {
         this.context = context;
         this.items = items;
+        this.listener = listener;  // Initialize the listener
     }
 
-
+    // Define the OnItemClickListener interface
+    public interface OnItemClickListener {
+        void onItemClick(int position);  // Method for item click
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false));
-
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         Item currentItem = items.get(position);
 
-        holder.img.setImageResource(items.get(position).getImage());
+        // Set image and other properties
+        holder.img.setImageResource(currentItem.getImage());
 
-
-
-
-//        holder.itemView.setOnClickListener(view -> listener.onItemClick(position));
-
+        // Set the click listener for the item view
+        holder.itemView.setOnClickListener(view -> {
+            listener.onItemClick(position);
+            if (listener != null) {
+                listener.onItemClick(position);
+            }
+        });
     }
 
     @Override

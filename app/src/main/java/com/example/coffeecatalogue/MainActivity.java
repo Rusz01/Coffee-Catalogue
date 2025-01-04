@@ -1,8 +1,10 @@
 package com.example.coffeecatalogue;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,9 +19,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList <Item> items;
     ViewPager2 viewPager;
+    Button btnPrevious, btnNext;
 
-//    TextView mheading, mdescription;
-//    ImageView mimageView;
 
 
     @Override
@@ -27,25 +28,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnPrevious = findViewById(R.id.btnPrevious);
+        btnNext = findViewById(R.id.btnNext);
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         items = new ArrayList<>();
         populateCoffeeList();
 
-        // Set the adapter for the RecyclerView
-        CoffeeAdapter adapter = new CoffeeAdapter(this, items);
+
+        CoffeeAdapter adapter = new CoffeeAdapter(this, items, new CoffeeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                recyclerView.smoothScrollToPosition(position);
+                viewPager.setCurrentItem(position);
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         viewPager = findViewById(R.id.viewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(items);
         viewPager.setAdapter(viewPagerAdapter);
 
+        btnPrevious.setOnClickListener(v -> {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
+        });
 
-
+        btnNext.setOnClickListener(v -> {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+        });
     }
-
-
 
 
 
