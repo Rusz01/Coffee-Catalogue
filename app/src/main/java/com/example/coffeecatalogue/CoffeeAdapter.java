@@ -31,6 +31,8 @@ public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false));
+
+
     }
 
     @Override
