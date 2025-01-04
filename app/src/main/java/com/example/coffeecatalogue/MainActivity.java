@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList <Item> items;
+    ViewPager2 viewPager;
 
-    TextView mheading, mdescription;
-    ImageView mimageView;
+//    TextView mheading, mdescription;
+//    ImageView mimageView;
 
 
     @Override
@@ -34,17 +37,10 @@ public class MainActivity extends AppCompatActivity {
         CoffeeAdapter adapter = new CoffeeAdapter(this, items);
         recyclerView.setAdapter(adapter);
 
-        mheading = findViewById(R.id.heading);
-        mdescription = findViewById(R.id.description);
-        mimageView = findViewById(R.id.image);
+        viewPager = findViewById(R.id.viewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(items);
+        viewPager.setAdapter(viewPagerAdapter);
 
-        String Heading = getIntent().getStringExtra("heading");
-        String Description = getIntent().getStringExtra("description");
-        int Image = getIntent().getIntExtra("image", 0);
-
-        mheading.setText(Heading);
-        mdescription.setText(Description);
-        mimageView.setImageResource(Image);
 
 
     }

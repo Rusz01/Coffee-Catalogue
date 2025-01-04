@@ -20,6 +20,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
     ArrayList <Item> items;
 
 
+
     public CoffeeAdapter(Context context, ArrayList<Item> items) {
         this.context = context;
         this.items = items;
@@ -45,26 +46,8 @@ public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
 
 
-        holder.img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String itemHeading = currentItem.getHeading();
-                String itemDescription = currentItem.getDescription();
-                int itemImage = currentItem.getImage();
 
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra("heading", itemHeading);
-                intent.putExtra("description", itemDescription);
-                intent.putExtra("image", itemImage);
-                context.startActivity(intent);
-
-
-                Toast.makeText(context, itemHeading, Toast.LENGTH_SHORT).show();
-            }
-
-;
-
-        });
+//        holder.itemView.setOnClickListener(view -> listener.onItemClick(position));
 
     }
 
