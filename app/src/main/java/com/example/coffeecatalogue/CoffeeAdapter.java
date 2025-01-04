@@ -1,6 +1,7 @@
 package com.example.coffeecatalogue;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,10 +43,22 @@ public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
         holder.img.setImageResource(items.get(position).getImage());
 
+
+
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String itemHeading = currentItem.getHeading();
+                String itemDescription = currentItem.getDescription();
+                int itemImage = currentItem.getImage();
+
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("heading", itemHeading);
+                intent.putExtra("description", itemDescription);
+                intent.putExtra("image", itemImage);
+                context.startActivity(intent);
+
+
                 Toast.makeText(context, itemHeading, Toast.LENGTH_SHORT).show();
             }
 

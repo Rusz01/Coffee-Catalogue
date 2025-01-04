@@ -1,6 +1,9 @@
 package com.example.coffeecatalogue;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList <Item> items;
+
+    TextView mheading, mdescription;
+    ImageView mimageView;
 
 
     @Override
@@ -27,6 +33,19 @@ public class MainActivity extends AppCompatActivity {
         // Set the adapter for the RecyclerView
         CoffeeAdapter adapter = new CoffeeAdapter(this, items);
         recyclerView.setAdapter(adapter);
+
+        mheading = findViewById(R.id.heading);
+        mdescription = findViewById(R.id.description);
+        mimageView = findViewById(R.id.image);
+
+        String Heading = getIntent().getStringExtra("heading");
+        String Description = getIntent().getStringExtra("description");
+        int Image = getIntent().getIntExtra("image", 0);
+
+        mheading.setText(Heading);
+        mdescription.setText(Description);
+        mimageView.setImageResource(Image);
+
 
     }
 
