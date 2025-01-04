@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,21 @@ public class CoffeeAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        Item currentItem = items.get(position);
+
         holder.img.setImageResource(items.get(position).getImage());
+
+        holder.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemHeading = currentItem.getHeading();
+                Toast.makeText(context, itemHeading, Toast.LENGTH_SHORT).show();
+            }
+
+;
+
+        });
 
     }
 

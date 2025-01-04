@@ -1,14 +1,14 @@
 package com.example.coffeecatalogue;
 
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    ImageButton img;
+    ImageView img;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);

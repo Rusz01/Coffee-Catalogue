@@ -6,7 +6,7 @@
 
 
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="115dp"
         android:layout_height="145dp"
